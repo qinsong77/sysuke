@@ -1,0 +1,9 @@
+{
+  "extends": "@sysuke/tsconfig/base.json",
+  "compilerOptions": {
+    "target": "es5",
+    "outDir": "./",
+    "declaration": true,
+    "declarationDir": "./types"
+  }
+}

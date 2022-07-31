@@ -1,0 +1,3 @@
+{
+  "extends": "@sysuke/tsconfig/webpack-config.json"
+}

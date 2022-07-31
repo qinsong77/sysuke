@@ -1,0 +1,16 @@
+{
+  "name": "@sysuke/utils",
+  "version": "0.0.1",
+  "description": "utils",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc index.ts"
+  },
+  "devDependencies": {
+    "@sysuke/eslint-config-base": "workspace:*",
+    "@sysuke/tsconfig": "workspace:*"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

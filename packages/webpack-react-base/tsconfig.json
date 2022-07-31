@@ -1,0 +1,11 @@
+{
+  "extends": "@sysuke/tsconfig/react-app.json",
+  "include": ["src/**/*",
+    "webpack/**/*"
+  ],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
+  }
+}

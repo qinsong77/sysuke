@@ -1,0 +1,14 @@
+{
+  "extends": "./base.json",
+  "include": [
+    "**/*.spec.ts",
+    "**/*.test.ts",
+    "**/*.spec.tsx",
+    "**/*.test.tsx",
+    "**/*.spec.js",
+    "**/*.test.js",
+    "**/*.spec.jsx",
+    "**/*.test.jsx"
+  ],
+  "exclude": ["dist", "build", "node_modules"]
+}

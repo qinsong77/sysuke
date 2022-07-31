@@ -1,0 +1,19 @@
+{
+  "name": "@sysuke/tsconfig",
+  "version": "0.0.1",
+  "main": "index.js",
+  "files": [
+    "base.json",
+    "nextjs.json",
+    "node.json",
+    "react-library.json",
+    "react-library.json",
+    "test.json",
+    "webpack-config.json"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "tag": "beta",
+    "access": "public"
+  }
+}
