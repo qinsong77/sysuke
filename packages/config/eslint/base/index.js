@@ -24,11 +24,11 @@ module.exports = {
     'import/parsers': {
       '@typescript-eslint/parser': ['.ts', '.tsx'],
     },
-    'import/resolver': {
-      typescript: {
-        project: ['packages/*/tsconfig.json', 'app/*/tsconfig.json'],
-      },
-    },
+    // 'import/resolver': {
+    //   typescript: {
+    //     project: ['packages/*/tsconfig.json', 'app/*/tsconfig.json'],
+    //   },
+    // },
   },
   rules: {
     'prettier/prettier': 'error',

@@ -17,7 +17,8 @@ const config: Configuration = {
   output: {
     // 相当于 clean-webpack-plugin
     clean: true,
-    // publicPath: 'auto',
+    // default: auto
+    publicPath: process.env.PUBLIC_URL || '/',
     path: path.resolve(__dirname, '../dist'),
     filename: IS_DEV
       ? 'js/[name].bundle.js'
@@ -84,7 +85,7 @@ const config: Configuration = {
       template: './public/index.html',
       title: 'webpack react app',
       description: 'webpack react app',
-      publicPath: '',
+      publicPath: process.env.PUBLIC_URL || '/',
       minify: {
         removeComments: true, // 删除注释
         collapseWhitespace: true,

@@ -15,6 +15,7 @@ const config: Configuration = {
     moduleIds: 'deterministic', //单独模块id，模块内容变化再更新
     minimizer: [new CssMinimizerPlugin()],
     runtimeChunk: true,
+    // todo
     splitChunks: {
       chunks: 'all', // 匹配的块的类型：initial（初始块），async（按需加载的异步块），all（所有块）
       automaticNameDelimiter: '-',

@@ -7,7 +7,7 @@
     "nextjs.json",
     "node.json",
     "react-library.json",
-    "react-app.json.json",
+    "react-app.json",
     "test.json",
     "webpack-config.json"
   ],

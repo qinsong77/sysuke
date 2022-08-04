@@ -613,7 +613,15 @@ pnpm add eslint -D
 pnpm add  @typescript-eslint/eslint-plugin @typescript-eslint/parser -D
 pnpm add eslint-config-prettier eslint-plugin-prettier -D
 pnpm add eslint-plugin-react eslint-plugin-react-hooks -D
+pnpm add eslint-plugin-import -D
 ```
+`eslint-plugin-import `
+
+
+支持 ES2015+ (ES6+) 导入/导出语法的 linting
+顾名思义，是对导入的模块进行排序，并防止文件路径和导入名称拼写错误的问题
+对比排序前后代码，排序后的代码看起来更整洁，
+
 
 - [eslint-config-react-app](https://www.npmjs.com/package/eslint-config-react-app)
 ## lint-stage, husky, commitlint
