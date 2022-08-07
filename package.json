@@ -8,11 +8,11 @@
     "prepare": "husky install & npx only-allow pnpm",
     "changeset-create": "changeset",
     "changeset-apply": "changeset version",
-    "release": "turbo run build && changeset publish"
+    "changeset-release": "turbo run build --filter=@sysuke/* && changeset publish --registry=https://registry.npmjs.org"
   },
   "config": {
     "commitizen": {
-      "path": "node_modules/cz-conventional-changelog"
+      "path": "node_modules/cz-customizable"
     }
   },
   "engines": {
@@ -20,7 +20,7 @@
     "npm": "please use pnpm",
     "yarn": "please use pnpm"
   },
-  "packageManager": "pnpm@7.6.0",
+  "packageManager": "pnpm@7.9.0",
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -30,7 +30,8 @@
     "@commitlint/config-conventional": "^17.0.3",
     "@sysuke/eslint-config-base": "workspace:*",
     "commitizen": "^4.2.5",
-    "cz-conventional-changelog": "^3.3.0",
+    "commitlint-config-cz": "^0.13.3",
+    "cz-customizable": "^6.9.1",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
