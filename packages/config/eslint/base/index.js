@@ -17,23 +17,22 @@ module.exports = {
     // Prettier
     'plugin:prettier/recommended',
     // eslint-plugin-import
-    'plugin:import/errors',
+    'plugin:import/recommended',
+    'plugin:import/typescript',
+    'plugin:import/warnings',
   ],
-  plugins: ['import'],
   settings: {
     'import/parsers': {
       '@typescript-eslint/parser': ['.ts', '.tsx'],
     },
-    // 'import/resolver': {
-    //   typescript: {
-    //     project: ['packages/*/tsconfig.json', 'app/*/tsconfig.json'],
-    //   },
-    // },
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+    },
   },
   rules: {
     'prettier/prettier': 'error',
-    // turn on errors for missing imports
-    'import/no-unresolved': 'error',
     // "@next/next/no-html-link-for-pages": "off",
     // "react/jsx-key": "off",
   },

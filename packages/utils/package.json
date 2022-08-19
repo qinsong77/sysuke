@@ -2,9 +2,15 @@
   "name": "@sysuke/utils",
   "version": "0.0.1",
   "description": "utils",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
   "scripts": {
-    "build": "tsc index.ts"
+    "build": "rm -rf lib && tsc",
+    "watch": "tsc -w",
+    "prepublishOnly": "pnpm run-s lint test build"
   },
   "devDependencies": {
     "@sysuke/eslint-config-base": "workspace:*",

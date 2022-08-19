@@ -16,7 +16,8 @@
     "preserveWatchOutput": true,
     "skipLibCheck": true,
     "strict": true,
-    "allowJs": false
+    "allowJs": false,
+    "sourceMap": false
   },
   "exclude": ["node_modules"]
 }

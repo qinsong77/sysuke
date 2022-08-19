@@ -1,0 +1,13 @@
+{
+  "extends": "@sysuke/tsconfig/base.json",
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["esnext"],
+    "outDir": "bin",
+    "declaration": false,
+    "declarationMap": false,
+    "sourceMap": false
+  },
+  "include": ["src/*"],
+  "exclude": ["node_modules", "bin"]
+}

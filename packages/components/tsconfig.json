@@ -1,0 +1,8 @@
+{
+  "extends": "@sysuke/tsconfig/react-library.json",
+  "compilerOptions": {
+    "baseUrl": "src",
+  },
+  "include": ["src/**/*"],
+  "exclude": ["es", "lib", "node_modules"]
+}

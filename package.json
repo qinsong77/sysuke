@@ -29,6 +29,8 @@
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.3",
     "@sysuke/eslint-config-base": "workspace:*",
+    "@sysuke/tsconfig": "workspace:*",
+    "@types/node": "^18.0.3",
     "commitizen": "^4.2.5",
     "commitlint-config-cz": "^0.13.3",
     "cz-customizable": "^6.9.1",
