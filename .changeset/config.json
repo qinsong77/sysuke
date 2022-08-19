@@ -3,7 +3,7 @@
   "changelog": "@changesets/cli/changelog",
   "commit": false,
   "fixed": [],
-  "linked": [["@sysuke/*"]],
+  "linked": [["@sysuke/eslint-config-base", "@sysuke/eslint-config-next", "@sysuke/eslint-config-react", "@sysuke/tsconfig", "@sysuke/utils"]],
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",

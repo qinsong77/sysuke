@@ -1,0 +1,16 @@
+{
+  "mode": "pre",
+  "tag": "alpha",
+  "initialVersions": {
+    "vite-react-ts": "0.0.0",
+    "@sysuke/cli": "0.0.1",
+    "@sysuke/components": "0.0.1",
+    "@sysuke/eslint-config-base": "0.0.1",
+    "@sysuke/eslint-config-next": "0.0.1",
+    "@sysuke/eslint-config-react": "0.0.1",
+    "@sysuke/tsconfig": "0.0.1",
+    "@sysuke/utils": "0.0.1",
+    "@sysuke/webpack-react-base": "1.0.0"
+  },
+  "changesets": []
+}
