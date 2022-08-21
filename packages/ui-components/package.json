@@ -1,7 +1,7 @@
 {
-  "name": "@sysuke/components",
+  "name": "@sysuke/ui-components",
   "version": "0.0.1",
-  "description": "react components",
+  "description": "react ui components",
   "type": "module",
   "files": [
     "dist"
