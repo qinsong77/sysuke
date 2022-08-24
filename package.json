@@ -5,6 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "commit": "git-cz",
     "prepare": "husky install & npx only-allow pnpm",
     "changeset-create": "changeset",
     "changeset-apply": "changeset version",
@@ -12,7 +13,7 @@
   },
   "config": {
     "commitizen": {
-      "path": "node_modules/cz-customizable"
+      "path": "cz-conventional-changelog"
     }
   },
   "engines": {
@@ -32,8 +33,6 @@
     "@sysuke/tsconfig": "workspace:*",
     "@types/node": "^18.0.3",
     "commitizen": "^4.2.5",
-    "commitlint-config-cz": "^0.13.3",
-    "cz-customizable": "^6.9.1",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
