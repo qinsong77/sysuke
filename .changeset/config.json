@@ -1,11 +1,16 @@
 {
-  "$schema": "https://unpkg.com/@changesets/config@2.1.0/schema.json",
-  "changelog": "@changesets/cli/changelog",
-  "commit": false,
+  "$schema": "https://unpkg.com/@changesets/config@2.1.1/schema.json",
+  "changelog": [
+    "@changesets/changelog-github",
+    {
+      "repo": "qinsong77/sysuke"
+    }
+  ],
+  "commit": true,
   "fixed": [],
-  "linked": [["@sysuke/eslint-config-base", "@sysuke/eslint-config-next", "@sysuke/eslint-config-react", "@sysuke/tsconfig", "@sysuke/utils"]],
+  "linked": [["@sysuke/*"]],
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": ["@sysuke/webpack-react-base", "@sysuke/components", "@sysuke/cli"]
+  "ignore": ["@sysuke/webpack-react-base", "@sysuke/ui-components", "@sysuke/cli"]
 }

@@ -627,19 +627,35 @@ pnpm add eslint-plugin-import -D
 
 ## lint-stage, husky, commitlint
 
-.editorconfig
+统一编辑器格式`.editorconfig`
+```editorconfig
+# Editor configuration, see http://editorconfig.org
+root = true
 
-husky 可用于提交代码时进行 eslint 校验，如果有 eslint 报错可阻止代码提交。
+[*]
+charset = utf-8
+end_of_line = lf
+indent_style = space
+indent_size = 2
+insert_final_newline = true
+trim_trailing_whitespace = true
 
-@commitlint/config-conventional @commitlint/cli 制定了git commit提交规范，团队可以更清晰的查看每一次代码的提交记录
-
-@commitlint/config-conventional 这是一个规范配置,标识采用什么规范来执行消息校验, 这个默认是Angular的提交规范
-
-lint-staged 能够让lint只检测git缓存区的文件，提升速度。
-```shell
-pnpm add -D @commitlint/config-conventional @commitlint/cli husky lint-staged
+[*.md]
+max_line_length = off
+trim_trailing_whitespace = false
 ```
+
+
+`husky`用来绑定 `Git Hooks`,在指定时机（例如 `pre-commit`）执行我们想要的命令，比如可用于提交代码时进行 `eslint` 校验，如果有 `eslint` 报错可阻止代码提交。详细的安装使用方式可参考 [Husky 文档](https://typicode.github.io/husky/#/?id=automatic-recommended)
+
+`lint-staged` 能够让`lint`只检测`git缓存区`的文件，提升速度。
+
+```shell
+pnpm add husky lint-staged -D
+```
+
 package.json中添加命令
+
 ```json
 {
   "scripts":{
@@ -654,75 +670,139 @@ package.json中添加命令
 ```shell
 pnpm i lint-staged husky -D
 pnpm set-script prepare "husky install" # 在package.json中添加脚本
-pnpm run prepare # 初始化husky,将 git hooks 钩子交由,husky执行
+pnpm run prepare # 初始化husky,将 git hooks 钩子交由husky执行
 ```
+接着设置你想要的git hooks
 
-在项目根目录下创建`commitlint.config.js`
+Husky 初始化完成后，`pnpm dlx husky add .husky/commit-msg "npx --no-install commitlint --edit $1"`
 
-```js
-// git commit 规范
-// <类型>[可选的作用域]: <描述>
-//git commit -m 'feat: 增加 xxx 功能'
-//git commit -m 'bug: 修复 xxx 功能'
-// # 主要type
-// feat:     增加新功能
-// fix:      修复bug
-//build:     主要目的是修改项目构建系统(例如 glup，webpack，rollup 的配置等)的提交
-//ci:         主要目的是修改项目继续集成流程(例如 Travis，Jenkins，GitLab CI，Circle等)的提交
-//docs:       文档更新
-//perf:      性能，体验优化
-//refactor:  代码重构时使用
-// style:    不影响代码含义的改动，例如去掉空格、改变缩进、增删分号
-// refactor: 代码重构时使用
-// revert:   执行git revert打印的message
-//chore：      不属于以上类型的其他类型
-// test:     添加测试或者修改现有测试
-
-module.exports = {
-  extends: ['@commitlint/config-conventional'],
-};
-
-```
-
-安装husky
-```shell
-pnpm prepare
-```
-Husky 用来绑定 Git Hooks、在指定时机（例如 pre-commit）执行我们想要的命令，安装方式请参考 Husky 文档：https://typicode.github.io/husky/#/?id=automatic-recommended
-
-初始化完成后，`pnpm dlx husky add .husky/commit-msg "npx --no-install commitlint --edit $1" `
+.husky下会出现文件`commit-msg`如下
 ```shell
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
 npx --no-install commitlint --edit 
 ```
-
+添加 lint-staged
 ```shell
 pnpm dlx husky add .husky/pre-commit "npx --no-install lint-staged" 
 ```
 
+### 规范代码提交
 
-安装辅助提交依赖
+`@commitlint/config-conventional` `@commitlint/cli` 制定了`git commit`提交规范，团队可以更清晰地查看每一次代码的提交记录
 
+`@commitlint/config-conventional` 这是一个规范配置，标识采用什么规范来执行消息校验, 这个默认是Angular的提交规范
+
+
+```shell
+pnpm add -D @commitlint/config-conventional @commitlint/cli 
+```
+
+在项目根目录下创建`commitlint.config.js`
+
+```js
+module.exports = {
+  extends: ['@commitlint/config-conventional'],
+};
+```
+
+### 使用commitizen规范commit提交格式
+
+`commitizen` 的作用主要是为了生成标准化的 `commit message`，符合 `Angular` 规范。
+
+一个标准化的 `commit message` 应该包含三个部分：Header、Body 和 Footer，其中的 Header 是必须的，Body 和 Footer 可以选填。
+
+```
+<type>(<scope>): <subject>
+// 空一行
+<body>
+// 空一行
+<footer>
+```
+
+Header 部分由三个字段组成：type（必需）、scope（可选）、subject（必需）
+
+- Type
+  `type` 必须是下面的其中之一：
+  - feat: 增加新功能
+  - fix: 修复 bug
+  - docs: 只改动了文档相关的内容
+  - style: 不影响代码含义的改动，例如去掉空格、改变缩进、增删分号
+  - refactor: 代码重构时使用，既不是新增功能也不是代码的bud修复
+  - perf: 提高性能的修改
+  - test: 添加或修改测试代码
+  - build: 构建工具或者外部依赖包的修改，比如更新依赖包的版本
+  - ci: 持续集成的配置文件或者脚本的修改
+  - chore: 杂项，其他不需要修改源代码或不需要修改测试代码的修改
+  - revert: 撤销某次提交
+
+- scope
+
+用于说明本次提交的影响范围。`scope` 依据项目而定，例如在业务项目中可以依据菜单或者功能模块划分，如果是组件库开发，则可以依据组件划分。
+
+- subject
+
+主题包含对更改的简洁描述：
+
+注意三点：
+
+1. 使用祈使语气，现在时，比如使用 "change" 而不是 "changed" 或者 ”changes“
+2. 第一个字母不要大写
+3. 末尾不要以.结尾
+
+- Body
+
+主要包含对主题的进一步描述，同样的，应该使用祈使语气，包含本次修改的动机并将其与之前的行为进行对比。
+
+- Footer
+
+包含此次提交有关重大更改的信息，引用此次提交关闭的issue地址，如果代码的提交是不兼容变更或关闭缺陷，则Footer必需，否则可以省略。
+
+使用方法：
+
+如果需要在项目中使用 `commitizen` 生成符合 `AngularJS` 规范的提交说明，还需要安装 `cz-conventional-changelog` 适配器。
 ```shell
 pnpm i commitizen cz-conventional-changelog -D
 ```
+
 安装指令和命令行的展示信息
 ```shell
 pnpm set-script commit "git-cz" # package.json 中添加 commit 指令, 执行 `git-cz` 指令
 ```
-
-初始化commit指令
+初始化commit指令(可能出错)
 ```shell
 pnpm dlx commitizen init cz-conventional-changelog --save-dev --save-exact
 ```
+或者直接在package.json添加
+```json
+{
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  }
+}
+```
+接下来就可以使用 `$ pnpm commit` 来代替 `$ git commit` 进行代码提交了，看到下面的效果就表示已经安装成功了。
 
-自定义提交规范，`cz-conventional-changelog`就可以移除了
+
+也可以自定义提交规范，`cz-conventional-changelog`就可以移除了
 ```shell
 pnpm i commitlint-config-cz  cz-customizable -D
 ```
-增加 `.cz-config.js`
+增加 `.cz-config.js`如下
+并修改配置：
+```json
+{
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    }
+  }
+}
+```
+官方[example](https://github.com/leoforfree/cz-customizable/blob/master/cz-config-EXAMPLE.js)
 ```shell
 "use strict";
 module.exports = {
@@ -771,6 +851,7 @@ module.exports = {
   subjectLimit: 100
 };
 ```
+
 
 ## analyze
 

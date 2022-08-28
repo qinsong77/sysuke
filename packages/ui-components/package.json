@@ -1,6 +1,7 @@
 {
   "name": "@sysuke/ui-components",
-  "version": "0.0.1",
+  "private": true,
+  "version": "0.0.0",
   "description": "react ui components",
   "type": "module",
   "files": [
