@@ -8,9 +8,9 @@
   ],
   "commit": true,
   "fixed": [],
-  "linked": [["@sysuke/*"]],
+  "linked": [["@sysuke/eslint-*"]],
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": ["@sysuke/webpack-react-base", "@sysuke/ui-components", "@sysuke/cli"]
+  "ignore": ["vite-react-ts", "@sysuke/webpack-react-base", "@sysuke/ui-components", "@sysuke/cli"]
 }

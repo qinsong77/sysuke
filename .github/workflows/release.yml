@@ -20,6 +20,8 @@ jobs:
 
       - name: Install pnpm
           uses: pnpm/action-setup@v2
+          env:
+            NPM_TOKEN: ${{ secrets.NPM_TOKEN }} # Ensure to have this set up under GitHub secrets
 
       - name: Set node version to 16
         uses: actions/setup-node@v2

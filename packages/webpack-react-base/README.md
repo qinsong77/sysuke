@@ -918,3 +918,4 @@ module.exports = {
 
 - [Eslint + Prettier + Husky + Commitlint+ Lint-staged 规范前端工程代码规范](https://juejin.cn/post/7038143752036155428)
 - [爆肝从零搭建React+webpack5+Typescript模板](https://juejin.cn/post/7020972849649156110)
+- [Module Resolution or Import Alias: The Final Guide](https://www.raulmelo.dev/blog/module-resolution-or-import-alias-the-final-guide)
