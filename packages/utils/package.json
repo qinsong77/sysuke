@@ -9,8 +9,7 @@
   ],
   "scripts": {
     "build": "rm -rf lib && tsc",
-    "watch": "tsc -w",
-    "prepublishOnly": "pnpm run-s lint test build"
+    "watch": "tsc -w"
   },
   "devDependencies": {
     "@sysuke/eslint-config-base": "workspace:*",
