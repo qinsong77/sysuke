@@ -11,11 +11,7 @@
     "changeset-apply": "changeset version",
     "changeset-release": "turbo run build --filter=@sysuke/* && changeset publish --registry=https://registry.npmjs.org",
     "build": "turbo run build",
-    "dev": "turbo run dev --parallel",
-    "changeset": "changeset",
-    "changeset:version": "changeset version",
-    "changeset:publish": "changeset publish",
-    "release": "npm run build && npm run changeset && npm run changeset:version && npm run changeset:publish"
+    "dev": "turbo run dev --parallel"
   },
   "config": {
     "commitizen": {
