@@ -1,47 +1,59 @@
 {
   "name": "@sysuke/ui-components",
-  "private": true,
   "version": "0.0.0",
   "description": "react ui components",
   "type": "module",
   "files": [
-    "dist"
+    "dist",
+    "es"
   ],
-  "main": "./dist/my-lib.umd.js",
-  "module": "./dist/my-lib.es.js",
-  "types": "./dist/index.d.ts",
+  "main": "dist/sysuke-ui.cjs.js",
+  "module": "dist/sysuke-ui.es.js",
+  "unpkg": "dist/sysuke-ui.umd.js",
+  "types": "dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./es/index.js",
-      "require": "./lib/index.js"
+      "import": "./dist/sysuke-ui.es.js",
+      "require": "./dist/sysuke-ui.cjs.js"
     }
   },
   "scripts": {
+    "dev": "vite build -w",
     "build": "vite build",
+    "build:esm": "tsc -b --force tsconfig.esm.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": [
+    "react",
+    "react-component",
+    "vite",
+    "@emotion"
+  ],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "styled-components": "^5.3.5"
-  },
   "devDependencies": {
+    "@emotion/babel-plugin": "^11.10.2",
+    "@rollup/plugin-replace": "^4.0.0",
     "@sysuke/eslint-config-react": "workspace:*",
     "@sysuke/tsconfig": "workspace:*",
     "@sysuke/utils": "workspace:*",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
-    "@vitejs/plugin-react": "^2.0.0",
+    "@vitejs/plugin-react": "^2.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "typescript": "^4.7.4",
-    "vite": "^3.0.0",
+    "vite": "^3.0.9",
     "vite-plugin-dts": "^1.4.1"
   },
   "peerDependencies": {
     "react": "^16.8.0 || 17.x",
-    "react-dom": "^16.8.0 || 17.x",
-    "styled-components": "^5.0.0"
+    "react-dom": "^16.8.0 || 17.x"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@mui/icons-material": "^5.10.3",
+    "@mui/material": "^5.10.3"
   }
 }
