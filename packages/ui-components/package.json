@@ -1,6 +1,6 @@
 {
   "name": "@sysuke/ui-components",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "react ui components",
   "type": "module",
   "files": [
@@ -8,12 +8,12 @@
     "es"
   ],
   "main": "dist/sysuke-ui.cjs.js",
-  "module": "dist/sysuke-ui.es.js",
+  "module": "es/index.js",
   "unpkg": "dist/sysuke-ui.umd.js",
-  "types": "dist/index.d.ts",
+  "types": "es/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/sysuke-ui.es.js",
+      "import": "./es/index.js",
       "require": "./dist/sysuke-ui.cjs.js"
     }
   },
