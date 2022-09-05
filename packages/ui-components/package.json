@@ -1,26 +1,27 @@
 {
   "name": "@sysuke/ui-components",
-  "version": "0.0.1",
+  "version": "0.0.6",
   "description": "react ui components",
-  "type": "module",
   "files": [
     "dist",
     "es"
   ],
-  "main": "dist/sysuke-ui.cjs.js",
+  "main": "lib/index.js",
   "module": "es/index.js",
-  "unpkg": "dist/sysuke-ui.umd.js",
   "types": "es/index.d.ts",
+  "unpkg": "dist/sysuke-ui.umd.js",
   "exports": {
     ".": {
       "import": "./es/index.js",
-      "require": "./dist/sysuke-ui.cjs.js"
+      "require": "./lib/index.js"
     }
   },
   "scripts": {
     "dev": "vite build -w",
     "build": "vite build",
     "build:esm": "tsc -b --force tsconfig.esm.json",
+    "build:cjs": "tsc -b --force tsconfig.cjs.json",
+    "build:all": "pnpm run build & pnpm run build:cjs & pnpm run build:esm",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -47,8 +48,8 @@
     "vite-plugin-dts": "^1.4.1"
   },
   "peerDependencies": {
-    "react": "^16.8.0 || 17.x",
-    "react-dom": "^16.8.0 || 17.x"
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
   },
   "dependencies": {
     "@emotion/react": "^11.10.4",
