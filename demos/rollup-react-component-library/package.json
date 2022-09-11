@@ -12,17 +12,9 @@
     ".": {
       "import": "./dist/index.esm.js",
       "require": "./dist/index.cjs.js"
-    },
-    "./dist/index.css": {
-      "import": "./dist/index.css",
-      "require": "./dist/index.css"
     }
   },
-  "sideEffects": [
-    "*.sass",
-    "*.scss",
-    "*.css"
-  ],
+  "sideEffects": false,
   "scripts": {
     "build:esm": "rollup -c rollup.esm.js --environment NODE_ENV:development",
     "copy-d.ts": "copyfiles -u 1 src/**/*.d.ts dist",
@@ -55,12 +47,10 @@
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
     "copyfiles": "^2.4.1",
-    "postcss": "^8.4.14",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rollup": "^2.79.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
-    "rollup-plugin-styles": "^4.0.0",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-visualizer": "^5.8.1",
     "typescript": "^4.7.4"
