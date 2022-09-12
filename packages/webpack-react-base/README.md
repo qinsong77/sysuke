@@ -915,7 +915,47 @@ module.exports = {
 };
 ```
 
+## [tree-shaking](https://webpack.js.org/guides/tree-shaking/#root)
+
+在 Webpack 中，启动 Tree Shaking 功能必须同时满足三个条件：
+
+- 使用 ESM 规范编写模块代码(`import` and` `export`)
+- 配置 `optimization.usedExports` 为 true（默认值），启动标记功能
+- 启动代码优化功能，可以通过如下方式实现： 
+  - 配置 `mode = production `
+  - 配置 `optimization.minimize = true `（默认值）
+  - 提供 [`optimization.minimizer`](https://webpack.js.org/configuration/optimization/#optimizationminimizer) 数组, 注入 `Terser`（minimize为true时如果不覆盖选项，默认启用，覆盖了要单独引入使用）、`UglifyJS` 插件
+
+sideEffects
+
+`usedExports`是检查上下文有没有引用，如果没有引用，就会注入魔法注释，通过`terser`压缩进行去除未引入的代码
+
+而`sideEffects`是对没有副作用的代码进行去除
+
+css tree shaking
+
+https://blog.csdn.net/pfourfire/article/details/126505335
+```js
+// webpack.config.js
+module.exports = {
+  entry: "./src/index",
+  mode: "production",
+  devtool: false,
+  optimization: {
+    usedExports: true,
+  },
+};
+```
+
+webpack-bundle-analyzer
+
+https://limeii.github.io/2018/09/webpack-bundle-analyzer/
+
+https://www.basefactor.com/configuring-aliases-in-webpack-vs-code-typescript-jest
+
+https://www.npmjs.com/package/tsconfig-paths-webpack-plugin
 
 - [Eslint + Prettier + Husky + Commitlint+ Lint-staged 规范前端工程代码规范](https://juejin.cn/post/7038143752036155428)
 - [爆肝从零搭建React+webpack5+Typescript模板](https://juejin.cn/post/7020972849649156110)
 - [Module Resolution or Import Alias: The Final Guide](https://www.raulmelo.dev/blog/module-resolution-or-import-alias-the-final-guide)
+- [Webpack 原理系列九：Tree-Shaking 实现原理](https://segmentfault.com/a/1190000040814997)

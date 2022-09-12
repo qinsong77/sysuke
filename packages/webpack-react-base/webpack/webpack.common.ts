@@ -4,16 +4,35 @@ import * as webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
+import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin';
+
 import * as path from 'path';
 import { IS_DEV } from './config';
 import { handler } from './utils';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const friendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
-
+console.log(path.resolve(__dirname, "../tsconfig.json"));
 const config: Configuration = {
   mode: 'production',
   entry: path.resolve(__dirname, '../src/index'),
+  resolve: {
+    // 尝试按顺序解析这些后缀名。如果有多个文件有相同的名字，但后缀名不同，webpack 会解析列在数组首位的后缀的文件 并跳过其余的后缀。
+    extensions: ['.tsx', '.ts', '.js', '.json'],
+    // 创建 import 或 require 的别名，来确保模块引入变得更简单。例如，一些位于 src/ 文件夹下的常用模块：
+    // alias: {
+    //   '@': path.resolve(__dirname, '../src'),
+    // },
+    plugins: [
+      //https://www.npmjs.com/package/tsconfig-paths-webpack-plugin
+      new TsconfigPathsPlugin({
+        baseUrl: __dirname,
+        // todo
+        // https://snyk.io/advisor/npm-package/tsconfig-paths-webpack-plugin/example
+        configFile: path.resolve(__dirname, "../tsconfig.json"),
+      })
+    ]
+  },
   output: {
     // 相当于 clean-webpack-plugin
     clean: true,
@@ -28,14 +47,6 @@ const config: Configuration = {
       : 'js/[name].[contenthash:8].chunk.js',
     // 与 output.filename 相同，不过应用于 Asset Modules。
     assetModuleFilename: 'assets/[hash][ext][query]',
-  },
-  resolve: {
-    // 尝试按顺序解析这些后缀名。如果有多个文件有相同的名字，但后缀名不同，webpack 会解析列在数组首位的后缀的文件 并跳过其余的后缀。
-    extensions: ['.tsx', '.ts', '.js', '.json'],
-    // 创建 import 或 require 的别名，来确保模块引入变得更简单。例如，一些位于 src/ 文件夹下的常用模块：
-    alias: {
-      '@': path.resolve(__dirname, '../src'),
-    },
   },
   // loader的执行顺序默认从右到左，多个loader用[],字符串只用一个loader，也可以是对象的格式
   module: {

@@ -1,4 +1,9 @@
 {
   "extends": "@sysuke/tsconfig/react-app.json",
-  "include": ["src/**/*", "webpack/**/*"]
+  "include": ["src"],
+  "references": [
+    {
+      "path": "./tsconfig.webpack.json"
+    }
+  ]
 }
