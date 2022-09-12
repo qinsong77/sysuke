@@ -1,6 +1,6 @@
 import * as React from 'react';
 import type { AccordionProps } from './types';
-import './index.css';
+// import './index.css';
 
 const Accordion: React.FC<AccordionProps> = () => <div className={'accordion'}>Accordion</div>;
 

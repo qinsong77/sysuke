@@ -6,7 +6,7 @@ import externalDep from 'rollup-plugin-peer-deps-external';
 import { terser } from 'rollup-plugin-terser';
 import visualizer from 'rollup-plugin-visualizer';
 
-import styled from 'rollup-plugin-styles';
+// import styled from 'rollup-plugin-styles';
 
 import * as fs from 'fs';
 import * as path from 'path';
@@ -16,11 +16,12 @@ const isProd = process.env.NODE_ENV === 'production';
 
 const entryFile = 'src/index.ts';
 const componentDir = 'src';
-const modulesNames = fs.readdirSync(path.resolve(componentDir));
-
-const componentEntryFiles = modulesNames
-  .map((name) => (/^[A-Z]\w*/.test(name) ? `${componentDir}/${name}/index.ts` : undefined))
-  .filter((n) => !!n);
+const componentEntryFiles = fs
+  .readdirSync(path.resolve(componentDir), {
+    withFileTypes: true,
+  })
+  .filter((dirent) => dirent.isDirectory() && /^[A-Z]\w*/.test(dirent.name))
+  .map((dirent) => `${componentDir}/${dirent.name}/index.ts`);
 
 export default [
   {
@@ -53,29 +54,29 @@ export default [
         extensions,
       }),
       commonjs(),
-      styled({
-        // 抽出css，而不是打包进js
-        mode: 'extract',
-        // use: ['less'],
-        // less: {
-        //   javascriptEnabled: true,
-        // },
-        extensions: ['.less', '.css'],
-        minimize: true,
-        // CSS Modules
-        modules: false,
-        sourceMap: true,
-        url: {
-          inline: true,
-        },
-        onExtract: (data) => {
-          // 以下操作用来确保每个组件目录只输出一个 index.css，实际上每一个子级组件都会输出样式文件，index.css 会包含所有子组件的样式
-          const { css, name, map } = data;
-          const { base } = path.parse(name);
-          if (base !== 'index.css') return false;
-          return true;
-        },
-      }),
+      // styled({
+      //   // 抽出css，而不是打包进js
+      //   mode: 'extract',
+      //   // use: ['less'],
+      //   // less: {
+      //   //   javascriptEnabled: true,
+      //   // },
+      //   extensions: ['.less', '.css'],
+      //   minimize: true,
+      //   // CSS Modules
+      //   modules: false,
+      //   sourceMap: true,
+      //   url: {
+      //     inline: true,
+      //   },
+      //   onExtract: (data) => {
+      //     // 以下操作用来确保每个组件目录只输出一个 index.css，实际上每一个子级组件都会输出样式文件，index.css 会包含所有子组件的样式
+      //     const { css, name, map } = data;
+      //     const { base } = path.parse(name);
+      //     if (base !== 'index.css') return false;
+      //     return true;
+      //   },
+      // }),
       babel({
         extensions,
         babelHelpers: 'runtime',
