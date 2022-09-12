@@ -5,8 +5,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "commit": "git-cz",
     "prepare": "husky install & npx only-allow pnpm",
+    "commit": "git-cz",
     "changeset-create": "changeset",
     "changeset-apply": "changeset version",
     "changeset-release": "turbo run build --filter=@sysuke/* && changeset publish --registry=https://registry.npmjs.org",

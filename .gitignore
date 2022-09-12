@@ -36,6 +36,7 @@ yarn-error.log*
 .idea
 
 # build
+rollup-bundle-report.html
 dist
 packages/ui-components/es
 packages/ui-components/lib
