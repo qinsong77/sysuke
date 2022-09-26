@@ -1,8 +1,8 @@
-# 从零搭建 webpack5 + React + Ts + Jest 基础模版
+# 从零搭建 webpack5 + React + Typescript + Jest 基础模版
 
 ## 初始化 package.json
 
-这里使用`pnpm`管理`package`，`pnpm`相比npm，yarn最大的优点就是节约磁盘空间并提升安装速度，在我用`pnpm-workspace+turborepo`搭建monorepo的项目中，感触颇深，得益于pnpm，在monorepo下即使有几十个app+package，安装速度也在接受访问内。
+这里使用`pnpm`管理`package`，`pnpm`相比npm，yarn最大的优点就是节约磁盘空间并提升安装速度，在我用`pnpm-workspace+turborepo`搭建monorepo的项目中，感触颇深，得益于pnpm，在monorepo下即使有几十个app+package，安装速度也在接受范围内。
 所以后续的所有命令都使用`pnpm`完成。
 初始化：
 
@@ -17,7 +17,6 @@ pnpm init
 
 - dependencies: 生产环境，项目运行的依赖（如：react,react-dom）
 - devDependencies: 开发环境，项目所需的依赖（如：webpack插件，打包插件，压缩插件，eslint等）
-- peerDependencies: 包不会自动安装，会提示你项目运行，需要主动安装该依赖。
 - scripts: 指定了运行脚本命令的npm命令行缩写
 - private：如果设为true，无法通过`npm publish`发布代码。
 
@@ -31,8 +30,7 @@ pnpm add typescript -D
 pnpm exec tsc --init 
 ```
 
-这个时候项目跟目录下会生成一份`tsconfig.json`文件，内容如下,删除了多余的注释
-
+这个时候项目跟目录下会生成一份`tsconfig.json`文件，删除了多余的注释，内容如下: 
 ```shell
 {
     "compilerOptions": {
@@ -45,7 +43,7 @@ pnpm exec tsc --init
     }
 }
 ```
-
+添加配置如下
 ```json5
 {
   /* Visit https://aka.ms/tsconfig to read more about this file */
@@ -62,7 +60,6 @@ pnpm exec tsc --init
     "noEmit": true, /* 不输出文件,即编译后不会生成任何js文件 */
 
     "strict": true, /* 启用所有严格的类型检查选项。 */
-
 
     "moduleResolution": "node", /** 模块解析策略，ts默认用node的解析策略，即相对的方式导入 */
     "allowSyntheticDefaultImports": true, /* 允许从没有默认导出的模块中默认导入。 这不会影响代码发出，只是类型检查。 */
@@ -81,7 +78,6 @@ pnpm exec tsc --init
     "src"
   ]
 }
-
 ```
 
 ## 引入React
@@ -133,12 +129,8 @@ const App = () => {
 export default App;
 ```
 
-### `import React from ‘react’` 和 `import * as React from 'react'`
-
-https://juejin.cn/post/7069598156735905800
-
-https://juejin.cn/post/7000930676488798216#heading-1
-
+### `import React from ‘react’` 和 `import * as React from 'react'`区别
+示例代码
 ```js
 // constant.js
 export const a = 1
@@ -169,31 +161,31 @@ console.log(constant_1.default);
 
 在默认情况下ts会将`esm`模块编译成`commonjs`
 
-- 对于 `export default `的变量，TS 会将其放在` module.exports` 的 `default` 属性上
-- 对于 `export` 的变量，TS 会将其放在 `module.exports` 对应变量名的属性上
+- 对于 `export default `的变量，ts会将其放在` module.exports` 的 `default` 属性上
+- 对于 `export` 的变量，ts会将其放在 `module.exports` 对应变量名的属性上
 - 额外给 `module.exports` 增加一个 `__esModule: true `的属性，用来告诉编译器，这本来是一个 esm 模块
 
 看一下npm包中react的导出
 
 ![](./image/shoot2.png)
 
-可以看到通过npm方式引用react时默认是以commonjs方式导出的，结合上面ts默认编译的规则，`import React from 'react'` 会从 `exports.default` 上去拿代码，显然此时`default`属性不存在`commonjs`模块中，因此会导致打印`undefined`；而`import * as React from 'react'` 则会把React作为为一个对象因此不会有问题。
+可以看到通过npm方式引用react时默认是以`commonjs`方式导出的，结合上面ts默认编译的规则，`import React from 'react'` 会从 `exports.default` 上去拿代码，显然此时`default`属性不存在`commonjs`模块中，因此会导致打印`undefined`；而`import * as React from 'react'` 则会把React作为为一个对象，因此不会有问题。
 
 首先对于 [react v16.13.0](https://github.com/facebook/react/blob/v16.12.0/packages/react/src/React.js) 之前的版本都是通过 `export default` 导出的，所以使用 `import React from 'react'` 来导入 react，上面的 console.log(constant) 才不会是 undefined
 
-但是从  [react v16.13.0](https://github.com/facebook/react/blob/v16.13.0/packages/react/src/React.js) 开始，react 就改成了用 export 的方式导出了，如果在 ts 中使用 import React from 'react' 则会有错误提示：
+但是从  [react v16.13.0](https://github.com/facebook/react/blob/v16.13.0/packages/react/src/React.js) 开始，react 就改成了用 `export` 的方式导出了，如果在 ts 中使用 `import React from 'react'` 则会有错误提示：
 
 ```
 TS1259: Module 'xxxx' has no default export.
 ```
 
-由于没有了 default 属性，所以上面编译后的代码 console.log(constant) 输出的是 undefined，ts 会提示有错误。
+由于没有了 `default` 属性，所以上面编译后的代码` console.log(constant)` 输出的是 undefined，ts 会提示有错误。
 
 ### esModuleInterop 和 allowSyntheticDefaultImports
 
-上面的问题延伸一下，其实不仅仅是引入react，在esm中引入任何commonjs的模块在ts默认编译时都会有这样的问题，ts提供了esModuleInterop 和 allowSyntheticDefaultImports 这两个配置来影响ts默认的解析。
+上面的问题延伸一下，其实不仅仅是引入react，在esm中引入任何commonjs的模块在ts默认编译时都会有这样的问题，ts提供了`esModuleInterop` 和 `allowSyntheticDefaultImports` 这两个配置来影响ts默认的解析。
 
-allowSyntheticDefaultImports是一个类型检查的配置，它会把import没有exports.default的报错忽略，如果你的target是es6加上这个配置就够了，但如果你的目标代码是es5仅仅加上这个还不行，还需要使用esModuleInterop，因为它才会改变tsc的编译产物：
+`allowSyntheticDefaultImports`是一个类型检查的配置，它会把`import`没有`exports.default`的报错忽略，如果你的`target`是`es6`加上这个配置就够了，但如果你的目标代码是`es5`仅仅加上这个还不行，还需要使用`esModuleInterop`，因为它才会改变tsc的编译产物：
 
 ```
 // tsconfig.json
@@ -218,14 +210,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importDefault(require("react"));
 console.log(react_1.default.useEffect);
-
 ```
 
-在加上esModuleInterop 之后编译产物多了一个_importDefault 辅助函数，而他的作用就是给module.exports 加上default 属性。
-根据 [ts官网](https://www.typescriptlang.org/tsconfig#allowSyntheticDefaultImports)的说明
-开启`esModuleInterop`的同时也会默认开启`allowSyntheticDefaultImports`,因此更推荐直接加`esModuleInterop`。
+在加上`esModuleInterop` 之后编译产物多了一个`_importDefault` 辅助函数，而他的作用就是给`module.exports` 加上`default` 属性。
+根据 [ts官网](https://www.typescriptlang.org/tsconfig#allowSyntheticDefaultImports)的说明 开启`esModuleInterop`的同时也会默认开启`allowSyntheticDefaultImports`,因此更推荐直接加`esModuleInterop`。
 
-## 目录
+## 项目目录
 
 ```markdown
 react-ts-template
@@ -260,6 +250,7 @@ react-ts-template
 │ ├── index.tsx # 项目入口文件
 │ ├── index.scss # 项目入口引入的scss
 └── tsconfig.json # TS 配置文件
+└── tsconfig.webpack.json # 给ts-node指定tsconfig-paths时使用
 ```
 
 ## webpack
@@ -270,21 +261,43 @@ pnpm add webpack webpack-cli webpack-dev-server webpack-merge -D
 
 这里webpack的配置文件也使用typescript，需要额外配置，参考官网[Configuration Languages](https://webpack.docschina.org/configuration/configuration-languages/)
 
-要使用 Typescript 来编写 webpack 配置，你需要先安装必要的依赖，比如 Typescript 以及其相应的类型声明，类型声明可以从 DefinitelyTyped 项目中获取，依赖安装如下所示：
+要使用 Typescript 来编写 webpack 配置，你需要先安装必要的依赖，比如 Typescript 以及其相应的类型声明，类型声明可以从 `DefinitelyTyped` 项目中获取，依赖安装如下所示：
 
 ```shell
 pnpm add ts-node @types/node @types/webpack -D
 ```
 
-值得注意的是你需要确保 tsconfig.json 的 compilerOptions 中 module 选项的值为 commonjs,否则 webpack 的运行会失败报错，因为 ts-node 不支持 commonjs 以外的其他模块规范。
+值得注意的是你需要确保 `tsconfig.json` 的 `compilerOption`s 中 `module` 选项的值为 `commonjs`,否则 webpack 的运行会失败报错，因为 `ts-node` 不支持 `commonjs` 以外的其他模块规范。
 
 官网有三种设置方式，这里选择第三种
 
-先安装 tsconfig-paths 这个 npm 包，如下所示：
+先安装 `tsconfig-paths` 这个 npm 包，如下所示：
 
 ```shell
 pnpm add tsconfig-paths -D
 ```
+然后添加`tsconfig.webpack.json`
+```json
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "downlevelIteration": true
+  },
+  "include": ["webpack"]
+}
+```
+package.json
+```json
+{
+  "scripts": {
+    "build": "cross-env TS_NODE_PROJECT=\"tsconfig.webpack.json\" webpack"
+  }
+}
+```
+之所以要添加 `cross-env`，是因为我们在直接使用 `TS_NODE_PROJECT` 时遇到过 "TS_NODE_PROJECT" unrecognized command 报错的反馈，添加` cross-env` 之后该问题也似乎得到了解决，可以查看这个[issue](https://github.com/webpack/webpack.js.org/issues/2733)
 
 ### 安装相关插件
 
@@ -296,13 +309,13 @@ pnpm add tsconfig-paths -D
 - @pmmmwh/react-refresh-webpack-plugin && react-refresh: react热更新
 - dotenv：可以将环境变量中的变量从 `.env `文件加载到 `process.env` 中。
 - cross-env： 运行跨平台设置和使用环境变量的脚本
-- friendly-errors-webpack-plugin: 用于美化控制台，良好的提示错误。
+- @soda/friendly-errors-webpack-plugin: 用于美化控制台，良好的提示错误。
 - fork-ts-checker-webpack-plugin: runs TypeScript type checker on a separate process.
 - babel相关，后续单独罗列
 - postcss等，后续单独罗列
 
 ```shell
-pnpm add html-webpack-plugin @pmmmwh/react-refresh-webpack-plugin react-refresh dotenv cross-env mini-css-extract-plugin css-minimizer-webpack-plugin style-loader css-loader friendly-errors-webpack-plugin fork-ts-checker-webpack-plugin -D
+pnpm add html-webpack-plugin @pmmmwh/react-refresh-webpack-plugin react-refresh dotenv cross-env mini-css-extract-plugin css-minimizer-webpack-plugin style-loader css-loader @soda/friendly-errors-webpack-plugin fork-ts-checker-webpack-plugin -D
 ```
 
 ### 添加public文件夹
@@ -330,58 +343,50 @@ pnpm add html-webpack-plugin @pmmmwh/react-refresh-webpack-plugin react-refresh 
 </html>
 ```
 
-### script
-
-### env
-
 ### webpack中的指纹策略
 
 比如 `filename: '[name].[hash].[ext]'`
 
-- hash：以项目为单位，项目内容改变了，则会生成新的hash，内容不变则hash不变。 整个工程任何一个需要被打包的文件发生了改变，打包结果中的所有文件的hash值都会改变。
+- hash：以项目为单位，项目内容改变了，则会生成新的`hash`，内容不变则`hash`不变。 整个工程任何一个需要被打包的文件发生了改变，打包结果中的所有文件的hash值都会改变。
 - chunkhash：以`chunk`为单位，当一个文件内容改变，则整个`chunk`组的模块hash都会改变。
 
-比如：
-假设打包出口有`a.123.js`和`c.123.js`，a文件中引入了b文件，修改了b文件的内容，重新的打包结果为`a.111.js`和`c.123.js` 的`hash`值会被影响，但是**c的hash值不受影响**。
+比如： 假设打包出口有`a.123.js`和`c.123.js`，a文件中引入了b文件，修改了b文件的内容，重新的打包结果为`a.111.js`和`c.123.js` 的`hash`值会被影响，但是**c的hash值不受影响**。
 
 - contenthash：以自身内容为单位，依赖不算。
 
-比如：
-
-假设打包出口有`a.123.js`和`b.123.css`，a文件引入了b文件，修改了b文件的内容，重新打包结果为`a.123.js`和`b.111.css`，a的hash值不受影响
+比如： 假设打包出口有`a.123.js`和`b.123.css`，a文件引入了b文件，修改了b文件的内容，重新打包结果为`a.123.js`和`b.111.css`，a的hash值不受影响
 
 ### 静态资源
 
 webpack 5 之前，通常使用
 
-raw-loader 将文件导入为字符串
-url-loader 将文件作为data URL 内联到bundle中
-file-loader 将文件发送到输出目录
+- raw-loader 将文件导入为字符串
+- url-loader 将文件作为data URL 内联到bundle中
+- file-loader 将文件发送到输出目录
 
 相比webpack5之前需要`url-loader`、`file-loader`等处理，在webpack5中直接内置了 [`asset`](https://webpack.docschina.org/guides/asset-modules/) 模块，
 
-asset/resource发送一个单独的文件并导出 URL。之前通过使用file-loader实现
-asset/inline导出一个资源的 data URI。之前通过使用url-loader实现。
-asset/source导出资源的源代码。之前通过使用raw-loader实现。
-asset在导出一个 data URI 和发送一个单独的文件之间自动选择。之前通过使用url-loader，并且配置资源体积限制实现。
+- `asset/resource`发送一个单独的文件并导出 URL。之前通过使用`file-loader`实现
+- `asset/inline` 导出一个资源的 data URI。之前通过使用`url-loader`实现。
+- asset/source导出资源的源代码。之前通过使用raw-loader实现。
+- asset在导出一个 data URI 和发送一个单独的文件之间自动选择。之前通过使用url-loader，并且配置资源体积限制实现。
 
-关于配置type:'asset'后，webpack 将按照默认条件，自动地在 resource 和 inline 之间进行选择：小于 8kb 的文件，将会视为 inline 模块类型，否则会被视为 resource 模块类型。
+关于配置`type:'asset'`后，webpack 将按照默认条件，自动地在 `resource` 和 `inline` 之间进行选择：小于 8kb 的文件，将会视为 `inline` 模块类型，否则会被视为 `resource` 模块类型。
 
 ## babel 设置
 
-关于TS转JS,有三种方案
-
-- tsc: 不好配合webpack使用，转换es5以后，一些语法特性不能转换。
+关于TS转JS，有三种方案
+- tsc: 不好配合`webpack`使用，转换`es5`以后，一些语法特性不能转换。
 - [ts-loader](https://www.npmjs.com/package/ts-loader): 可以做类型检查，可搭配`tsconfig.json`使用。
 - `babel-loader` + `@babel/preset-typescript`, 插件丰富，提供缓存机制，后续兼容扩展更强，但做不了类型检查(可以使用[Fork TS Checker Webpack Plugin](https://www.npmjs.com/package/fork-ts-checker-webpack-plugin)。（推荐）
 
+这里选择第三种，安装依赖：
 ```shell
 pnpm i babel-loader @babel/core @babel/preset-env @babel/preset-react @babel/preset-typescript core-js -D
 pnpm i @babel/plugin-transform-runtime -D
 pnpm add @babel/runtime
 ```
 
-- [吃一堑长一智系列: 99% 开发者没弄明白的 babel 知识](https://zhuanlan.zhihu.com/p/361874935)
 - [@babel/preset-env 与@babel/plugin-transform-runtime 使用及场景区别](https://segmentfault.com/a/1190000021188054)
 - [babel-loader](https://webpack.docschina.org/loaders/babel-loader): 使用 Babel 和 webpack 转译 JavaScript 等文件，内部核心转译功能需要@babel/core这个核心库。
 - @babel/core: @babel/core是babel的核心库，所有的核心api都在这个库里，这些api可供babel-loader调用
@@ -400,70 +405,28 @@ pnpm add @babel/runtime
 - core-js：它是JavaScript标准库的polyfill，而且它可以实现按需加载。使用@babel/preset-env的时候可以配置core-js的版本和core-js的引入方式。
 - regenerator-runtime：提供generator函数的转码
 
-业务项目
-
-```json5
-{
-  "presets": [
-    [
-      "@babel/preset-env",
-      {
-        // https://babel.docschina.org/docs/en/options/#targets
-        // 官方推荐使用.browserslistrc配置
-//        "targets": {
-//          "chrome": 58
-//        },
-        "useBuiltIns": "entry",
-        "corejs": {
-          "version": 3,
-          "proposals": true
-        }
-      }
-    ]
-  ],
-  "plugins": [
-    [
-      "@babel/plugin-transform-runtime", // 需要把 @babel/runtime 安装为一个依赖
-      {
-        "corejs": false
-      }
-    ]
-  ]
-}
-```
-
-并在入口文件处 import 如下内容
-
+`babel.config.js`
 ```js
-import 'core-js/stable';
-import 'regenerator-runtime/runtime';
-```
+const IS_DEV = process.env.NODE_ENV === 'development';
 
-library:
-
-```json
-{
-  "presets": [
+module.exports = {
+  presets: [
+    '@babel/preset-env',
     [
-      "@babel/preset-env"
-    ]
-  ],
-  "plugins": [
-    [
-      "@babel/plugin-transform-runtime",
+      '@babel/preset-react',
       {
-        "corejs": {
-          "version": 3,
-          "proposals": true
-        },
-         "useESModules": true
-      }
-    ]
-  ]
-}
+        runtime: 'automatic',
+        development: IS_DEV,
+      },
+    ],
+    '@babel/preset-typescript',
+  ],
+  plugins: [].concat(IS_DEV ? ['react-refresh/babel'] : []),
+};
+
 ```
 
-## browserslist
+### browserslist
 
 browserslist实际上就是声明了一段浏览器的合集，我们的工具可以根据这个合集描述，针对性的输出兼容性代码，browserslist应用于babel、postcss等工具当中。
 
@@ -514,7 +477,7 @@ last 1 firefox version
 postcss其实就是类似css中的babel的作用，
 
 ```shell
-pnpm add postcss postcss-loader postcss-preset-env postcss-cssnext postcss-flexbugs-fixes postcss-normalize -D
+pnpm add postcss postcss-loader postcss-preset-env postcss-flexbugs-fixes postcss-normalize -D
 ```
 
 ## eslint, Prettier
@@ -947,15 +910,21 @@ module.exports = {
 };
 ```
 
-webpack-bundle-analyzer
+### webpack-bundle-analyzer
 
-https://limeii.github.io/2018/09/webpack-bundle-analyzer/
+每个打包以后的 bundle 文件里面，真正包含哪些内容，项目里的 module、js、component、html、css、img 最后都被放到哪个对应的 bunlde 文件里了。
 
-https://www.basefactor.com/configuring-aliases-in-webpack-vs-code-typescript-jest
+每个 bundle 文件里，列出了每一个的 module、componet、js 具体 size，同时会列出 start size、parsed size、gzip size 这三种不同的形式下到底多大，方便优化。
 
-https://www.npmjs.com/package/tsconfig-paths-webpack-plugin
+- start size：原始没有经过 minify 处理的文件大小
+
+- parse size：比如 webpack plugin 里用了 uglify，就是 minified 以后的文件大小
+
+- gzip size：被压缩以后的文件大小
+
 
 - [Eslint + Prettier + Husky + Commitlint+ Lint-staged 规范前端工程代码规范](https://juejin.cn/post/7038143752036155428)
 - [爆肝从零搭建React+webpack5+Typescript模板](https://juejin.cn/post/7020972849649156110)
 - [Module Resolution or Import Alias: The Final Guide](https://www.raulmelo.dev/blog/module-resolution-or-import-alias-the-final-guide)
 - [Webpack 原理系列九：Tree-Shaking 实现原理](https://segmentfault.com/a/1190000040814997)
+- [Configuring aliases in webpack + VS Code + Typescript + Jest](https://www.basefactor.com/configuring-aliases-in-webpack-vs-code-typescript-jest)
