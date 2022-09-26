@@ -1,6 +1,0 @@
-- [组件库构建方案演进](https://www.infoq.cn/article/vma6h6ujzdeljkferurz)
-- [居然有比 npm link 更好的调试？](https://mp.weixin.qq.com/s/I4hhrgI3-Y18HD8zw_9g9w)
-- [How to Create and Publish a React Component Library](https://dev.to/alexeagleson/how-to-create-and-publish-a-react-component-library-2oe)
-- [如何让组件库支持按需引入](https://zhuanlan.zhihu.com/p/473188268)
-- [You may not need a bundler for your NPM library](https://cmdcolin.github.io/posts/2022-05-27-youmaynotneedabundler)
-- [关于package.json中main字段的指向问题](https://jingsam.github.io/2018/03/12/npm-main.html)

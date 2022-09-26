@@ -34,16 +34,16 @@ export default [
         preserveModules: true,
         preserveModulesRoot: 'src',
         exports: 'named',
-        assetFileNames: ({ name }) => {
-          // console.log(name);
-          // 抽离后的样式文件会作为 asset 输出，这里可以配置一下 样式文件的输出位置（为 babel-plugin-import 做准备）
-          const { ext, dir, base } = path.parse(name);
-          // console.log(ext);
-
-          if (ext !== '.css') return '[name].[ext]';
-          // 输出到style目录，便于tree-shaking
-          return path.join(dir, 'style', base);
-        },
+        // assetFileNames: ({ name }) => {
+        //   // console.log(name);
+        //   // 抽离后的样式文件会作为 asset 输出，这里可以配置一下 样式文件的输出位置（为 babel-plugin-import 做准备）
+        //   const { ext, dir, base } = path.parse(name);
+        //   // console.log(ext);
+        //
+        //   if (ext !== '.css') return '[name].[ext]';
+        //   // 输出到style目录，便于tree-shaking
+        //   return path.join(dir, 'style', base);
+        // },
       },
     ],
     plugins: [

@@ -5,7 +5,7 @@ import replace from '@rollup/plugin-replace';
 import externalDep from 'rollup-plugin-peer-deps-external';
 import { terser } from 'rollup-plugin-terser';
 import visualizer from 'rollup-plugin-visualizer';
-import postcss from 'rollup-plugin-postcss'
+// import postcss from 'rollup-plugin-postcss'
 
 
 const input = './src/index.ts';
@@ -44,13 +44,13 @@ export default [
         'process.env.NODE_ENV': JSON.stringify('production'),
         preventAssignment: true,
       }),
-      postcss({
-        extract: 'index.css',
-        // 压缩
-        minimize: true,
-        // Enable CSS modules
-        modules: true,
-      }),
+      // postcss({
+      //   extract: 'index.css',
+      //   // 压缩
+      //   minimize: true,
+      //   // Enable CSS modules
+      //   modules: true,
+      // }),
       isProd &&
         terser({
           output: {

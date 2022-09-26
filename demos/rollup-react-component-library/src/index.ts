@@ -40,6 +40,9 @@ export { default as Card } from './Card';
 export * from './Card';
 // export type { CardProps } from './Card';
 
+export { default as Checkbox } from './Checkbox';
+export * from './Checkbox';
+
 export { default as Chip } from './Chip';
 export * from './Chip';
 // export type { ChipProps } from './Chip';

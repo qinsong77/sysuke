@@ -6,17 +6,17 @@
     "dist"
   ],
   "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
+  "module": "esm/index.js",
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/index.esm.js",
+      "import": "./esm/index.js",
       "require": "./dist/index.cjs.js"
     }
   },
   "sideEffects": false,
   "scripts": {
-    "build:esm": "rollup -c rollup.esm.js --environment NODE_ENV:development",
+    "build:esm": "rollup -c rollup.esm.js -w --environment NODE_ENV:development",
     "copy-d.ts": "copyfiles -u 1 src/**/*.d.ts dist",
     "build:type": "tsc -b --force --verbose tsconfig.type.json && pnpm run copy-d.ts",
     "build:dev": "pnpm run build:type && rollup -c -w --environment NODE_ENV:development",

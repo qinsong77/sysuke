@@ -396,7 +396,7 @@ pnpm add @babel/plugin-transform-runtime -D
 - sideEffects: 来允许 `treeshaking`, `false`代表所有模块都是“纯”的，没有副作用
 - peerDependencies：如果你依赖别的框架或库，将它设置为 peer dependency
 
-更多的详细自动可参 考[打包 JavaScript 库的现代化指南](https://github.com/frehner/modern-guide-to-packaging-js-library/blob/main/README-zh_CN.md)
+更多的详细自动可参考[打包 JavaScript 库的现代化指南](https://github.com/frehner/modern-guide-to-packaging-js-library/blob/main/README-zh_CN.md)
 
 - copyfiles: 后续会讲到，主要是 `tsc build `时不会处理`.d.ts`文件，单独复制。
 - tsc: `-b` 即代表`--build`,`tsc -b`还支持其它一些选项：
@@ -791,6 +791,8 @@ webpack: {
   }
 }
 ```
+
+不推荐`.d.ts`声明type，如果`.d.ts`里没有`import`或者`export`，其实是全局声明的类型，而我们这里的使用场景明显是要显示的导入使用。
 
 #### 用 `tsc` 编译的后，映射的路径（即配置的[path](https://www.typescriptlang.org/tsconfig#paths) ）不会处理，将导致编译后的代码找不到模块。
 
