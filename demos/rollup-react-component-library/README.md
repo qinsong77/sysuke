@@ -767,7 +767,7 @@ webpack: {
 
 ## 总结
 
-使用rollup打包一个可用的react组件库基本实现，源代码见[rollup-react-component-library](https://github.com/qinsong77/sysuke/tree/main/demos/rollup-react-component-library)，其实一些常见的组件库，如`mui`，`ant-design`, [naive-ui](https://github.com/tusen-ai/naive-ui)等，在打包成es module，按模块
+使用rollup打包一个可用的react组件库基本实现，源代码见[rollup-react-component-library](https://github.com/qinsong77/sysuke/tree/rollup-react-component-library-save-version/demos/rollup-react-component-library)，其实一些常见的组件库，如`mui`，`ant-design`, [naive-ui](https://github.com/tusen-ai/naive-ui)等，在打包成es module，按模块
 打包输出时，都是用的其他方式，比如babel，tsc等，后面会补一篇文章去解析其他开源的组件库是如何打包的。
 
 ## 踩坑记录
