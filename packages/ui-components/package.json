@@ -3,58 +3,59 @@
   "version": "0.0.6",
   "description": "react ui components",
   "files": [
-    "dist",
-    "es"
+    "dist"
   ],
-  "main": "lib/index.js",
-  "module": "es/index.js",
-  "types": "es/index.d.ts",
-  "unpkg": "dist/sysuke-ui.umd.js",
+  "main": "dist/index.cjs.js",
+  "module": "esm/index.js",
+  "types": "dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./es/index.js",
-      "require": "./lib/index.js"
+      "import": "./esm/index.js",
+      "require": "./dist/index.cjs.js"
     }
   },
+  "sideEffects": false,
   "scripts": {
-    "dev": "vite build -w",
-    "build": "vite build",
-    "build:esm": "tsc -b --force tsconfig.esm.json",
-    "build:cjs": "tsc -b --force tsconfig.cjs.json",
-    "build:all": "pnpm run build & pnpm run build:cjs & pnpm run build:esm",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [
-    "react",
-    "react-component",
-    "vite",
-    "@emotion"
-  ],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@emotion/babel-plugin": "^11.10.2",
-    "@rollup/plugin-replace": "^4.0.0",
-    "@sysuke/eslint-config-react": "workspace:*",
-    "@sysuke/tsconfig": "workspace:*",
-    "@sysuke/utils": "workspace:*",
-    "@types/react": "^18.0.15",
-    "@types/react-dom": "^18.0.6",
-    "@vitejs/plugin-react": "^2.0.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "typescript": "^4.7.4",
-    "vite": "^3.0.9",
-    "vite-plugin-dts": "^1.4.1"
+    "build:type": "tsc -b --force --verbose tsconfig.type.json",
+    "build:dev": "pnpm run build:type && rollup -c -w --environment NODE_ENV:development",
+    "build:all": "rm -rf dist && pnpm run build:type && rollup -c --environment NODE_ENV:production"
   },
   "peerDependencies": {
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
   },
   "dependencies": {
+    "@babel/runtime": "^7.18.9",
     "@emotion/react": "^11.10.4",
-    "@emotion/styled": "^11.10.4",
-    "@mui/icons-material": "^5.10.3",
-    "@mui/material": "^5.10.3"
-  }
+    "@emotion/styled": "^11.10.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.6",
+    "@babel/plugin-transform-runtime": "^7.18.9",
+    "@babel/preset-env": "^7.18.6",
+    "@babel/preset-react": "^7.18.6",
+    "@babel/preset-typescript": "7.13.0",
+    "@rollup/plugin-babel": "^5.3.1",
+    "@rollup/plugin-commonjs": "^22.0.2",
+    "@rollup/plugin-node-resolve": "^14.0.0",
+    "@rollup/plugin-replace": "^4.0.0",
+    "@sysuke/eslint-config-react": "workspace:*",
+    "@types/react": "^18.0.15",
+    "@types/react-dom": "^18.0.6",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "rollup": "^2.79.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-visualizer": "^5.8.1",
+    "typescript": "^4.7.4"
+  },
+  "keywords": [
+    "react",
+    "react-component",
+    "rollup",
+    "@emotion"
+  ],
+  "author": "sysuke",
+  "license": "ISC"
 }

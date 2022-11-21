@@ -1,6 +1,20 @@
 # 组件库
 
+`Invalid hook call. Hooks can only be called inside of the body of a function component.`
 
+NPM 组件 和你的项目使用了 React Hooks 的情况，React 会报致命异常。（原因是 React Hooks 依赖上下文，所以全局只能使用一个，即使是版本完全一样的，官方推荐的解决方法 React 
+[错误提示](https://zh-hans.reactjs.org/warnings/invalid-hook-call-warning.html)
+1. 在主项目（不是被link的npm包）中使用alias指定加载的react依赖
+webpack.config.js
+```js
+resolve: {
+    alias: {
+      'react': path.resolve(__dirname, 'node_modules/react')
+    }
+  }
+```
+2. 更好的调试方式：[yalc](https://github.com/wclr/yalc)
+- [居然有比 npm link 更好的调试？](https://jishuin.proginn.com/p/763bfbd5b451)
 - unpkg
 `unpkg` 是一个内容源自 npm 的全球快速 CDN
 
@@ -36,3 +50,14 @@ cd packages/ui-components  && pnpx sb init --builder storybook-builder-vite
 
 
 ## jest
+
+https://cmdcolin.github.io/posts/2022-05-27-youmaynotneedabundler
+
+https://github.com/unjs/unbuild
+
+https://github.com/developit/microbundle
+
+https://github.com/egoist/tsup [chakra-ui](https://github.com/chakra-ui/chakra-ui/)用了
+
+
+[chakra-ui](https://github.com/chakra-ui/chakra-ui/) 可以作为参考，用了很多新技术

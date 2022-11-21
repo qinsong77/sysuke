@@ -68,4 +68,9 @@ inquirer模块命令行交互
 pnpm add inquirer -D
 pnpm add inquirer --filter="@sysuke/cli" -D 
 ```
+[从0-1搭建react，ts脚手架（自动化收集，进程通信，深拷贝文件等全流程）](https://mp.weixin.qq.com/s/QcVA6yEw3NvDV1ZLtoMcug)
+[ts-node-dev](https://www.npmjs.com/package/ts-node-dev)
+[搭建自己的 typescript 项目 + 开发自己的脚手架工具 ts-cli](https://juejin.cn/post/6901552013717438472)
+[create-vue](https://github.com/vuejs/create-vue)
 
+https://astro.build/
