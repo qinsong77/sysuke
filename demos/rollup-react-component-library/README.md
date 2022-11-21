@@ -170,7 +170,7 @@ rollup 插件只有插件扩展功能，相当于兼顾了 webpack 的`loader`�
     |-- Button 
     | |-- Button.tsx 
     | |-- index.ts
-    | |-- types.d.ts 
+    | |-- types.d.ts => types.ts
 |-- index.ts
 ```
 
@@ -203,6 +203,7 @@ export default Button;
 
 `types.d.ts`
 
+最后是`type.ts` 不要使用全局类型格式
 ```ts
 export type ButtonProps = {
   text: string;
@@ -781,7 +782,7 @@ webpack: {
 
 即如果 `src` 的类型文件是`.d.ts`结尾的，编译构建时`tsc`不会处理，导致文件不会复制到`outDir`。解决方式主要有 2 种
 
-- `.d.ts`重命名为`.ts`
+- `.d.ts`重命名为`.ts`, 正确的方式，类型文件不该`.d.ts`，一般全局的才用这个。
 - 构建阶段单独处理，复制文件到输出目录，这里使用的[copyfiles](https://www.npmjs.com/package/copyfiles)
 
 ```json
