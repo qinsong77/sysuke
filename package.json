@@ -1,46 +1,18 @@
 {
   "name": "sysuke",
   "private": true,
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "prepare": "husky install & npx only-allow pnpm",
-    "commit": "git-cz",
-    "changeset-create": "changeset",
-    "changeset-apply": "changeset version",
-    "changeset-release": "turbo run build --filter=@sysuke/* && changeset publish --registry=https://registry.npmjs.org",
-    "build": "turbo run build",
-    "dev": "turbo run dev --parallel"
-  },
-  "config": {
-    "commitizen": {
-      "path": "cz-conventional-changelog"
-    }
   },
   "engines": {
     "node": ">=14.6",
     "npm": "please use pnpm",
     "yarn": "please use pnpm"
   },
-  "packageManager": "pnpm@7.9.0",
+  "packageManager": "pnpm@8.6.0",
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "@changesets/changelog-github": "^0.4.6",
-    "@changesets/cli": "^2.24.3",
-    "@commitlint/cli": "^17.0.3",
-    "@commitlint/config-conventional": "^17.0.3",
-    "@sysuke/eslint-config-base": "workspace:*",
-    "@sysuke/tsconfig": "workspace:*",
-    "@types/node": "^18.0.3",
-    "commitizen": "^4.2.5",
-    "husky": "^8.0.1",
-    "lint-staged": "^13.0.3",
-    "prettier": "^2.7.1",
-    "serve": "^14.0.1",
-    "turbo": "^1.5.3",
-    "typescript": "^4.7.4"
-  }
+  "devDependencies": {}
 }

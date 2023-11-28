@@ -1,4 +1,4 @@
-# sysuke
+# Sysuke
 
 ....
 
@@ -9,4 +9,3 @@
 
 - vite-react-ts: `pnpm create vite vite-react-ts  --template react-ts`
 
-`pnpm outdated` 检查过时的安装包

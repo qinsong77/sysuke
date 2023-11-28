@@ -1,4 +1,0 @@
-{
-  "extends": "@sysuke/tsconfig/webpack-config.json",
-  "include": ["webpack"]
-}
