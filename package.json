@@ -1,0 +1,38 @@
+{
+  "name": "sysuke",
+  "version": "2.0.0",
+  "description": "self monorepo",
+  "keywords": [
+    "monorepo"
+  ],
+  "license": "MIT",
+  "author": "qinsong77",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "prepare": "husky",
+    "prettier:fix": "prettier '**/*.{js,jsx,ts,tsx,json,md}' --write"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.2.2",
+    "@commitlint/config-conventional": "^19.2.2",
+    "@commitlint/types": "^19.0.3",
+    "@sysuke/typescript-config": "workspace:*",
+    "@types/node": "^20",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "oxlint": "^0.2.17",
+    "prettier": "^3.2.5",
+    "prettier-plugin-packagejson": "^2.5.0",
+    "prettier-plugin-tailwindcss": "^0.5.13",
+    "typescript": "5.3.3"
+  },
+  "packageManager": "pnpm@8.9.0",
+  "engines": {
+    "node": ">=18.17.0",
+    "npm": "please use pnpm",
+    "pnpm": ">=8",
+    "yarn": "please use pnpm"
+  }
+}

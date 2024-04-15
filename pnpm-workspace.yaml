@@ -1,0 +1,4 @@
+packages:
+  - "apps/**"
+  - "packages/**"
+  - '!**/__test__/**'
