@@ -1,0 +1,64 @@
+{
+  "name": "@sysuke/utils",
+  "version": "1.0.0",
+  "description": "utils",
+  "keywords": [
+    "utils"
+  ],
+  "homepage": "https://github.com/qinsong77/sysuke",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qinsong77/sysuke.git"
+  },
+  "license": "MIT",
+  "author": "sysuke",
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "module": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./server": {
+      "types": "./server/dist/index.d.ts",
+      "import": "./server/dist/index.js",
+      "module": "./server/dist/index.js",
+      "require": "./server/dist/index.cjs"
+    },
+    "./client": {
+      "types": "./client/dist/index.d.ts",
+      "import": "./client/dist/index.js",
+      "module": "./client/dist/index.js",
+      "require": "./client/dist/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist/**/*",
+    "server/dist/**/*",
+    "client/dist/**/*"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "clear": "rimraf dist & rimraf server/dist & rimraf client/dist",
+    "dev": "tsup --watch",
+    "prettier-check": "prettier --check \"./**/*.ts*\"",
+    "test": "vitest run",
+    "test:client": "vitest --config vitest.client.config.ts run",
+    "test:node": "vitest --config vitest.node.config.ts run",
+    "test:watch": "vitest",
+    "type-check": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "require": "./dist/index.cjs"
+}
