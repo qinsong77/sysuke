@@ -57,7 +57,8 @@
     "tsup": "^8.0.2"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "require": "./dist/index.cjs"
 }

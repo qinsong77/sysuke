@@ -64,3 +64,23 @@ follow commitlint rule:
 - ci: 持续集成的配置文件或者脚本的修改
 - chore: 杂项，其他不需要修改源代码或不需要修改测试代码的修改
 - revert: 撤销某次提交
+
+## npm registry
+
+```shell
+npm install nrm -g
+## check all registry
+nrm ls
+## switch
+npx nrm use npm
+## confirm
+npm config ls
+```
+
+## manage package
+
+- unpublish/remove package
+
+```shell
+npm unpublish  @sysuke/eslint-config-react --force
+```
