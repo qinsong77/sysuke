@@ -9,5 +9,10 @@
   "bracketSpacing": true,
   "singleAttributePerLine": true,
   "endOfLine": "lf",
-  "plugins": ["prettier-plugin-packagejson", "prettier-plugin-tailwindcss"]
+  "plugins": [
+    "@trivago/prettier-plugin-sort-imports",
+    "prettier-plugin-packagejson",
+    "prettier-plugin-tailwindcss"
+  ],
+  "importOrderSeparation": true
 }

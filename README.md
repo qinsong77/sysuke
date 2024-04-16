@@ -28,12 +28,14 @@ pnpm install @sysuke/pkg1 --filter @sysuke/pkg2
 
 ## todo
 
-How to setup lint-staged with turbo monorepo?
+- How to setup lint-staged with turbo monorepo?
+- Adjust sort list for [prettier-plugin-sort-imports](https://github.com/trivago/prettier-plugin-sort-imports)
 
 ## Might using
 
 - use [syncpack](https://jamiemason.github.io/syncpack/guide/getting-started/) 同步和标准化不同项目间的依赖版本
-- [oxc](https://oxc-project.github.io/) oxlint
+- [oxc](https://oxc-project.github.io/) oxlint => [Biome](https://biomejs.dev/): Format, lint, and more in a fraction of
+  a second. - TBD
 
 ## Trivial
 

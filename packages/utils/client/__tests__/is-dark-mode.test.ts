@@ -1,8 +1,8 @@
 /**
  * @vitest-environment jsdom
  */
-import { describe, expect, it, vi } from 'vitest'
 import { isDarkMode } from '../is-dark-mode'
+import { describe, expect, it, vi } from 'vitest'
 
 describe('isDarkMode', () => {
   const matchMediaMock = vi.fn((query: unknown) => ({
