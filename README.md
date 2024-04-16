@@ -28,8 +28,13 @@ pnpm install @sysuke/pkg1 --filter @sysuke/pkg2
 
 ## todo
 
-- How to setup lint-staged with turbo monorepo?
+- lint-staged tsc
 - Adjust sort list for [prettier-plugin-sort-imports](https://github.com/trivago/prettier-plugin-sort-imports)
+- eslint or Biome
+- turborepo
+- ui library
+- web
+- rn
 
 ## Might using
 
