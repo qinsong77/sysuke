@@ -15,6 +15,7 @@
     "prettier:fix": "prettier '**/*.{js,jsx,ts,tsx,json,md}' --write"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.27.1",
     "@commitlint/cli": "^19.2.2",
     "@commitlint/config-conventional": "^19.2.2",
     "@commitlint/types": "^19.0.3",
