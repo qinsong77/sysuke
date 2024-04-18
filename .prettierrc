@@ -14,5 +14,11 @@
     "prettier-plugin-packagejson",
     "prettier-plugin-tailwindcss"
   ],
+  "importOrderParserPlugins": [
+    "typescript",
+    "jsx",
+    "classProperties",
+    "decorators"
+  ],
   "importOrderSeparation": true
 }
