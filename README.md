@@ -1,8 +1,8 @@
 # Sysuke
 
-Mine monorepo, powered by pnpm workspace and turboprop.
+Mine monorepo, powered by pnpm workspace and [turboprop](https://turbo.build/repo/docs).
 
-## common scripts
+## Common scripts
 
 - 安装全局的公共依赖包
 
@@ -33,7 +33,7 @@ pnpm install @sysuke/pkg1 --filter @sysuke/pkg2
 - ~~eslint or Biome~~, currently using eslint, but DX is not so good. but Biome doesn’t support monorepos very well due to some limitations in resolving nested configuration files
 - ~~turborepo~~
 - ui library
-- web
+- ~~web~~
 - rn
 
 ## Might use
