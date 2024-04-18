@@ -14,7 +14,7 @@ pnpm install typescript -w -D
 pnpm add prettier-plugin-tailwindcss -Dw
 ```
 
-- 给某个package单独安装指定依赖
+- 给某个package单独安装指定依赖: `--filter pkg`
 
 ```shell
 pnpm add axios --filter @apps/web
@@ -30,13 +30,13 @@ pnpm install @sysuke/pkg1 --filter @sysuke/pkg2
 
 - lint-staged tsc
 - Adjust sort list for [prettier-plugin-sort-imports](https://github.com/trivago/prettier-plugin-sort-imports)
-- eslint or Biome
+- ~~eslint or Biome~~, currently using eslint, but DX is not so good. but Biome doesn’t support monorepos very well due to some limitations in resolving nested configuration files
 - turborepo
 - ui library
 - web
 - rn
 
-## Might using
+## Might use
 
 - use [syncpack](https://jamiemason.github.io/syncpack/guide/getting-started/) 同步和标准化不同项目间的依赖版本
 - [oxc](https://oxc-project.github.io/) oxlint => [Biome](https://biomejs.dev/): Format, lint, and more in a fraction of

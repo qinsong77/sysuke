@@ -47,6 +47,7 @@
     "build": "tsup",
     "clear": "rimraf dist & rimraf server/dist & rimraf client/dist",
     "dev": "tsup --watch",
+    "lint": "eslint . --max-warnings 0",
     "test": "vitest run",
     "test:client": "vitest --config vitest.client.config.ts run",
     "test:node": "vitest --config vitest.node.config.ts run",
@@ -54,6 +55,7 @@
     "type-check": "tsc --noEmit"
   },
   "devDependencies": {
+    "@sysuke/eslint-config": "workspace:*",
     "tsup": "^8.0.2"
   },
   "publishConfig": {

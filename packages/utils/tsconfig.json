@@ -6,6 +6,13 @@
     "module": "ESNext",
     "target": "es6"
   },
-  "include": ["client/**/*.ts", "server/**/*.ts", "shared/**/*.ts"],
+  "include": [
+    "client/**/*.ts",
+    "server/**/*.ts",
+    "shared/**/*.ts",
+    "tsup.config.ts",
+    "vitest.client.config.ts",
+    "vitest.node.config.ts"
+  ],
   "exclude": ["node_modules", "dist"]
 }

@@ -5,8 +5,9 @@
   "compilerOptions": {
     "plugins": [{ "name": "next" }],
     "module": "ESNext",
+    "lib": ["dom", "dom.iterable", "esnext"],
     "moduleResolution": "Bundler",
-    "allowJs": true,
+    "allowJs": false,
     "jsx": "preserve",
     "noEmit": true
   }

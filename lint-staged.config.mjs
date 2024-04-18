@@ -1,4 +1,4 @@
-import fs from 'fs'
+import fs from 'node:fs'
 import path from 'node:path'
 
 function fileExists(filePath) {
@@ -38,7 +38,7 @@ export default {
 
   // This will lint and format TypeScript and JavaScript files
   '**/*.(ts|tsx|js)': (filenames) => [
-    // `eslint --fix ${filenames.join(' ')}`,
+    `eslint --fix ${filenames.join(' ')}`,
     `prettier --write ${filenames.join(' ')}`,
     // `vitest related --run`,
   ],
