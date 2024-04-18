@@ -16,12 +16,11 @@ const project = resolve(process.cwd(), 'tsconfig.json')
 module.exports = {
   extends: [
     'eslint:recommended',
-    'prettier',
+    'plugin:prettier/recommended',
     require.resolve('@vercel/style-guide/eslint/browser'),
     require.resolve('@vercel/style-guide/eslint/typescript'),
     require.resolve('@vercel/style-guide/eslint/react'),
     require.resolve('@vercel/style-guide/eslint/vitest'),
-    'plugin:tailwindcss/recommended',
     'eslint-config-turbo',
   ],
   plugins: ['only-warn'],
