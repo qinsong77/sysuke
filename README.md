@@ -31,7 +31,7 @@ pnpm install @sysuke/pkg1 --filter @sysuke/pkg2
 - lint-staged tsc
 - Adjust sort list for [prettier-plugin-sort-imports](https://github.com/trivago/prettier-plugin-sort-imports)
 - ~~eslint or Biome~~, currently using eslint, but DX is not so good. but Biome doesn’t support monorepos very well due to some limitations in resolving nested configuration files
-- turborepo
+- ~~turborepo~~
 - ui library
 - web
 - rn
