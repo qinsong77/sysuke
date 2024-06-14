@@ -1,6 +1,6 @@
 # Sysuke
 
-Mine monorepo, powered by pnpm workspace and [turboprop](https://turbo.build/repo/docs).
+Mine monorepo, powered by `pnpm workspace` and [turboprop](https://turbo.build/repo/docs).
 
 ## Common scripts
 
@@ -14,7 +14,7 @@ pnpm install typescript -w -D
 pnpm add prettier-plugin-tailwindcss -Dw
 ```
 
-- 给某个package单独安装指定依赖: `--filter pkg`
+- 给某个`package`单独安装指定依赖: `--filter pkg`
 
 ```shell
 pnpm add axios --filter @apps/web
@@ -34,7 +34,8 @@ pnpm install @sysuke/pkg1 --filter @sysuke/pkg2
 - ~~turborepo~~
 - ui library
 - ~~web~~
-- rn
+- RN/Expo, reference: [expo-monorepo-example](https://github.com/byCedric/expo-monorepo-example#pnpm-workarounds)
+- the process to publish package by changesets
 
 ## Might use
 
@@ -70,7 +71,7 @@ follow commitlint rule:
 - chore: 杂项，其他不需要修改源代码或不需要修改测试代码的修改
 - revert: 撤销某次提交
 
-## npm registry
+### npm registry
 
 ```shell
 npm install nrm -g
@@ -82,7 +83,7 @@ npx nrm use npm
 npm config ls
 ```
 
-## manage package
+### manage package
 
 - unpublish/remove package
 
