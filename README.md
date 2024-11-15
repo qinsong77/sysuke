@@ -43,7 +43,7 @@ Refer: [Changeset Prereleases doc](https://github.com/changesets/changesets/blob
 eg: beta
 
 ```shell
-changeset pre enter next
+changeset pre enter beta
 changeset version
 git add .
 git commit -m "Enter prerelease mode and version packages"
