@@ -15,15 +15,11 @@ const project = resolve(process.cwd(), 'tsconfig.json')
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
   extends: [
-    'eslint:recommended',
-    'plugin:prettier/recommended',
+    './base.js',
     require.resolve('@vercel/style-guide/eslint/browser'),
     require.resolve('@vercel/style-guide/eslint/typescript'),
     require.resolve('@vercel/style-guide/eslint/react'),
-    require.resolve('@vercel/style-guide/eslint/vitest'),
-    'eslint-config-turbo',
   ],
-  plugins: ['only-warn'],
   globals: {
     React: true,
     JSX: true,
@@ -38,15 +34,9 @@ module.exports = {
       },
     },
   },
-  ignorePatterns: [
-    // Ignore dotfiles
-    '*.config.[mc]js', // updated rule
-    'node_modules/',
-    'dist/',
-  ],
   overrides: [
     // Force ESLint to detect .tsx files
-    { files: ['*.js?(x)', '*.ts?(x)'] },
+    // { files: ['*.js?(x)', '*.ts?(x)'] },
     {
       files: ['**/*.test.ts', '**/*.test.tsx'],
       extends: [
@@ -55,4 +45,7 @@ module.exports = {
       ],
     },
   ],
+  rules: {
+    '@typescript-eslint/explicit-function-return-type': 'off',
+  },
 }

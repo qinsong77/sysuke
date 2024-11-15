@@ -1,5 +1,5 @@
 export const isFunction = (value: any): value is Function => {
-  return !!(value && value.constructor && value.call && value.apply)
+  return Boolean(value?.constructor && value.call && value.apply)
 }
 
 export const isPromise = (value: any): value is Promise<any> => {

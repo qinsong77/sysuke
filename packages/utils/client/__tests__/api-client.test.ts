@@ -1,6 +1,7 @@
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+
 import { stringifyObjectSafe } from '../../shared'
 import { api } from '../api-client'
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 describe('api', () => {
   describe('get', () => {

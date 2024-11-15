@@ -1,0 +1,4 @@
+{
+  "name": "Sysuke Packages",
+  "description": "monorepo preconfigured to publish packages via Changesets"
+}

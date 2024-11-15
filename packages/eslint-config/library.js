@@ -1,19 +1,22 @@
 const { resolve } = require('node:path')
+
 const project = resolve(process.cwd(), 'tsconfig.json')
 
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
   extends: [
-    'eslint:recommended',
-    'plugin:prettier/recommended',
+    './base.js',
     require.resolve('@vercel/style-guide/eslint/node'),
     require.resolve('@vercel/style-guide/eslint/typescript'),
-    require.resolve('@vercel/style-guide/eslint/vitest'),
-    'eslint-config-turbo',
+    require.resolve('@vercel/style-guide/eslint/browser'),
   ],
-  plugins: ['only-warn'],
+  // globals: {
+  //   React: true,
+  //   JSX: true,
+  // },
   env: {
     node: true,
+    browser: true,
   },
   settings: {
     'import/resolver': {
@@ -22,15 +25,16 @@ module.exports = {
       },
     },
   },
-  ignorePatterns: [
-    // Ignore dotfiles
-    '*.config.[mc]js', // updated rule
-    'node_modules/',
-    'dist/',
-  ],
   overrides: [
     {
-      files: ['*.js', '*.ts'],
+      files: ['*.js?(x)', '*.ts?(x)'],
+    },
+    {
+      files: ['**/*.test.ts', '**/*.test.tsx'],
+      extends: [require.resolve('@vercel/style-guide/eslint/vitest')],
     },
   ],
+  rules: {
+    '@typescript-eslint/no-explicit-any': 'off',
+  },
 }

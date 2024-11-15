@@ -5,11 +5,12 @@ const project = resolve(process.cwd(), 'tsconfig.json')
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
   extends: [
-    'eslint:recommended',
-    'plugin:prettier/recommended',
+    './base.js',
+    require.resolve('@vercel/style-guide/eslint/node'),
+    require.resolve('@vercel/style-guide/eslint/typescript'),
+    require.resolve('@vercel/style-guide/eslint/browser'),
+    require.resolve('@vercel/style-guide/eslint/react'),
     require.resolve('@vercel/style-guide/eslint/next'),
-    require.resolve('@vercel/style-guide/eslint/vitest'),
-    'eslint-config-turbo',
   ],
   globals: {
     React: true,
@@ -19,7 +20,6 @@ module.exports = {
     node: true,
     browser: true,
   },
-  plugins: ['only-warn'],
   settings: {
     'import/resolver': {
       typescript: {
@@ -27,10 +27,8 @@ module.exports = {
       },
     },
   },
-  ignorePatterns: [
-    // Ignore dotfiles
-    '*.config.[mc]js', // updated rule
-    'node_modules/',
-  ],
   overrides: [{ files: ['*.js?(x)', '*.ts?(x)'] }],
+  rules: {
+    '@typescript-eslint/explicit-function-return-type': 'off',
+  },
 }
