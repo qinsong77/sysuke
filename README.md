@@ -44,12 +44,8 @@ eg: beta
 
 ```shell
 changeset pre enter beta
+changeset
 changeset version
-git add .
-git commit -m "Enter prerelease mode and version packages"
-
-git push --follow-tags
-
 # on remote
 pnpm changeset publish
 
