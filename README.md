@@ -37,13 +37,9 @@ common package install root, including shared internal config packages, includin
 Above steps are the process to publish package on Local.
 For CI with github action: [`changesets/action@v1`](https://github.com/changesets/action), only need to run `pnpm changeset` and push code. Action will create PR and publish package to npm.
 
-`.changeset/config.json` 中的 `commit: true` is for local, for CI, because `changeset version` is executed in github action. so `changesets/action@v1` config will override it.
+~~`.changeset/config.json` 中的 `commit: true` is for local, for CI, because `changeset version` is executed in github action. so `changesets/action@v1` config will override it.~~
 
-So for the repo itself, the steps are:
-
-1. `pnpm changeset`
-2. commit code
-3. push code
+So for the repo itself, just need run `changeset` and push code.
 
 ### Prereleases
 
