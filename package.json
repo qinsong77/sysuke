@@ -22,7 +22,7 @@
     "type-check": "turbo type-check",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "turbo run build --filter=@sysuke && changeset publish",
+    "release": "turbo run build --filter='@sysuke/*' && changeset publish",
     "build:web": "turbo build --filter=web",
     "preview:web": "turbo preview --filter=web"
   },
@@ -43,7 +43,7 @@
     "prettier-plugin-tailwindcss": "^0.6.8",
     "rimraf": "^6.0.1",
     "tsc-files": "^1.1.4",
-    "turbo": "^2.2.3",
+    "turbo": "latest",
     "typescript": "5.5.4"
   },
   "packageManager": "pnpm@9.8.0",
